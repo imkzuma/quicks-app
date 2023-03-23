@@ -116,9 +116,9 @@ export default function QuicksButton(){
                     {
                         Show&& 
                             <motion.div
-                                initial = {{ opacity: 0, x: 50 }}
+                                initial = {{ opacity: 0, x: 65 }}
                                 animate = {{ opacity: 1, x: 0 }}
-                                exit = {{ opacity: 0, x: 50 }}
+                                exit = {{ opacity: 0, x: 65 }}
                                 className = 'd-flex gap-3 overflow-hidden'
                             >
                                 <>
@@ -135,7 +135,7 @@ export default function QuicksButton(){
                                         <BtnTodo />
                                     </>}
                                 </>
-                                
+
                             </motion.div>
                     }
                 </AnimatePresence>
