@@ -1,4 +1,5 @@
 import { Container, DropdownButton, Dropdown, Stack, Button, Form, Accordion } from "react-bootstrap";
+import { BsPlus, BsThreeDots } from "react-icons/bs";
 import { QuicksOpenCard } from "./QuicksOpenCard";
 import { ToggleTasksView } from "./ToggleTasksView";
 
@@ -19,8 +20,8 @@ export default function Todo(){
                         <Dropdown.Item>Urgent To Do</Dropdown.Item>
                     </DropdownButton>
 
-                    <Button>
-                        New Task
+                    <Button className = 'd-flex justify-content-center gap-2 align-items-center'>
+                        <BsPlus className = 'fs-5' /> New Task
                     </Button>
                 </Stack>
                 
@@ -32,8 +33,10 @@ export default function Todo(){
                                 <Stack direction = "horizontal" gap = {3}>
                                     <small>2 Days Left</small>
                                     <small>12/06/2021</small>
-                                    <ToggleTasksView eventKey="0">Click</ToggleTasksView>
-
+                                    <ToggleTasksView eventKey="0" />
+                                    <Button variant = "transparent" type = "button">
+                                        <BsThreeDots />
+                                    </Button>
                                 </Stack>
                             </Stack>
                             <Accordion.Collapse eventKey="0">
