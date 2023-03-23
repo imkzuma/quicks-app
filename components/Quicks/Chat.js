@@ -18,10 +18,14 @@ export default function Chat(){
     }
 
     const getData = async() => {
-        setLoading(true);
-        const response = await axios.get("https://jsonplaceholder.typicode.com/users");
-        setData(response.data);
-        setLoading(false);
+        try {
+            setLoading(true);
+            const response = await axios.get("https://jsonplaceholder.typicode.com/users");
+            setData(response.data);
+            setLoading(false);
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     const Loading = () => {
