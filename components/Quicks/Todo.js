@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Container, DropdownButton, Dropdown, Stack, Button, Form, Accordion, OverlayTrigger, Popover, Col } from "react-bootstrap";
 import { BsClock, BsPencil, BsPlus, BsThreeDots } from "react-icons/bs";
-import Loading from "./Loading/Loading";
+import Loading from "../Loading/Loading";
 import { QuicksOpenCard } from "./QuicksOpenCard";
 import { ToggleTasksView } from "./ToggleTasksView";
 
