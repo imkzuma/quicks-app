@@ -94,7 +94,7 @@ export default function TasksLists() {
                                                             return (
                                                                 <span
                                                                     key={id}
-                                                                    className={`${check[item.id] && "text-decoration-line-through text-secondary"}`}
+                                                                    className={`${check[item.id]&& "text-decoration-line-through text-secondary"}`}
                                                                 >
                                                                     {tag}
         
@@ -113,12 +113,12 @@ export default function TasksLists() {
                                         <Row className = 'align-items-center'>
                                             <Col lg={5} className = 'p-0'>
                                                 <small className='text-danger text-start'>
-                                                    {!check[index] && selisihDate(item.publishDate)}
+                                                    {!check[item.id] && selisihDate(item.publishDate)}
                                                 </small>
                                             </Col>
     
                                             <Col lg={3}>
-                                                <small className={`${check[index] && "text-secondary"}`}>
+                                                <small className={`${check[item.id] && "text-secondary"}`}>
                                                     {printDate(item.publishDate)}
                                                 </small>
                                             </Col>
