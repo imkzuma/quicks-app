@@ -4,8 +4,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Stack, Button } from "react-bootstrap";
 
 // components Chat and Todo
-import Chat from "./Chat";
-import Todo from "./Todo";
+import Chat from "@/components/Quicks/Chats/Chat";
+import Tasks from "@/components/Quicks/Tasks/Tasks";
 
 export default function QuicksButton(){
     const [showChat, setShowChat] = useState(false);
@@ -97,7 +97,7 @@ export default function QuicksButton(){
                         animate = {{ opacity: 1 }}
                         exit = {{ opacity: 0 }}
                     >
-                        <Todo /> 
+                        <Tasks /> 
                     </motion.div>
                 }
             </AnimatePresence>
