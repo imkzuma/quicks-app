@@ -8,10 +8,7 @@ import TasksLists from "./TasksLists";
 import NewTasks from "./NewTasks";
 
 export default function Tasks(){
-    const [data, setData] = useState([]);
     const [showNewTask, setShowNewTask] = useState(false);
-
-    
 
     return(
         <QuicksOpenCard>
@@ -53,7 +50,7 @@ export default function Tasks(){
                             </motion.div>
                         </AnimatePresence>
                     }
-                    <TasksLists data = { data } />
+                    <TasksLists />
                 </Stack>
             </Container>
         </QuicksOpenCard>
