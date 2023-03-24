@@ -5,7 +5,7 @@ import { QuicksOpenCard } from "./QuicksOpenCard";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Loading from "./Loading/Loading";
+import Loading from "../Loading/Loading";
 
 export default function Chat(){
     const [data, setData] = useState([]);
