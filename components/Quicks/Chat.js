@@ -5,6 +5,7 @@ import { QuicksOpenCard } from "./QuicksOpenCard";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Loading from "./Loading/Loading";
 
 export default function Chat(){
     const [data, setData] = useState([]);
@@ -20,23 +21,13 @@ export default function Chat(){
     const getData = async() => {
         try {
             setLoading(true);
-            const response = await axios.get("https://jsonplaceholder.typicode.com/users");
-            setData(response.data);
-            setLoading(false);
+            const { data } = await axios.get("https://jsonplaceholder.typicode.com/users");
+            setData(data);
         } catch (error) {
             console.error(error)
+        } finally {
+            setLoading(false);
         }
-    }
-
-    const Loading = () => {
-        return(
-            <Container fluid className = 'd-flex justify-content-center align-items-center' style = {{ height: "70vh" }}>
-                <div className = 'text-center'>
-                    <Spinner animation = "border" variant = "secondary" style = {{width: "3.5rem", height: "3.5rem"}} />
-                    <p className="text-secondary fw-bold py-3">Loading Chats...</p>
-                </div>
-            </Container>
-        )
     }
 
     useEffect(() => {
@@ -47,7 +38,7 @@ export default function Chat(){
     return(
         <QuicksOpenCard>
             { 
-                loading ? <Loading /> : 
+                loading ? <Loading components = "Chats" /> : 
                 <Container fluid className="px-4 py-3">
                     <InputGroup className = 'pb-4'>
                         <Form.Control 
