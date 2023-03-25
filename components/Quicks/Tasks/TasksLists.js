@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { Stack, Button, Form, Accordion, OverlayTrigger, Popover, Col, Row, Container } from "react-bootstrap";
-import { BsClock, BsPencil, BsThreeDots } from "react-icons/bs";
+import { BsBookmarks, BsClock, BsPencil, BsThreeDots } from "react-icons/bs";
+import axios from "axios";
+import Select from "react-select";
 
 import { ToggleTasksView } from "./ToggleTasksView";
-import axios from "axios";
+import { options, customStyles } from "./TaskPriorityOptions";
 import Loading from "@/components/Loading/Loading";
 
 export default function TasksLists() {
@@ -166,6 +168,20 @@ export default function TasksLists() {
                                             <Stack direction="horizontal" gap={4} className='align-items-center'>
                                                 <BsPencil className='text-primary fs-2' />
                                                 <h6> {item.text} </h6>
+                                            </Stack>
+                                        </Col>
+                                        <Col lg={12} className='p-0'>
+                                            <Stack direction="horizontal" gap={4} className='align-items-center'>
+                                                <BsBookmarks className='text-primary fs-2' />
+                                                <Select
+                                                    defaultValue={options[Math.floor(Math.random() * options.length)]}
+                                                    isMulti
+                                                    name="options priority"
+                                                    options={options}
+                                                    styles={customStyles}
+                                                    className="basic-multi-select"
+                                                    classNamePrefix="select"
+                                                />
                                             </Stack>
                                         </Col>
                                     </Stack>
