@@ -56,7 +56,10 @@ export default function TasksLists() {
         endDate.setFullYear("2023") // ini hanya buat dummy aja, karena tahun di API sudah lewat
 
         const selisih = endDate.getTime() - startDate.getTime();
-        return `${Math.ceil(selisih / (1000 * 3600 * 24))} Days Left`;
+        const selisihHari = Math.ceil(selisih / (1000 * 3600 * 24));
+
+        // display days left and days late
+       return selisihHari > 0 ? `${selisihHari} Days Left` : `${selisihHari * -1} Days Late`;
     }
 
     function handleDelete(id){

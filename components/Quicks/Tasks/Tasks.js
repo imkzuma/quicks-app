@@ -15,7 +15,7 @@ export default function Tasks(){
             <Container fluid className = 'px-4 py-3'>
                 <Stack
                     direction = "horizontal"
-                    className = 'ps-5 pb-3 align-items-center justify-content-between'
+                    className = 'ps-0 ps-lg-5 pb-3 align-items-center justify-content-between'
                 >
                     <DropdownButton 
                         variant = "outline-dark" 
