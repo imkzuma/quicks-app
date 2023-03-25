@@ -78,14 +78,31 @@ export default function ChatLists({ data }){
                                     <p className = 'text-primary fw-bold my-auto'>
                                         {name}
                                     </p>
-                                    <Col lg = {9} className = 'px-3 py-2 rounded' style = {{background: "#F8F8F8"}}>
-                                        <Stack direction="vertical" gap = {1}>
-                                            <p className = 'my-auto' style = {{color: "#4F4F4F"}}>
-                                                {item.body}
-                                            </p>
-                                            <small className = 'text-secondary'>
-                                                {getRandomDate().toLocaleTimeString()}
-                                            </small>
+                                    <Col lg = {9} >
+                                        <Stack direction = "horizontal" className = 'align-items-start'>
+                                            <Stack direction="vertical" gap = {1} className = 'px-3 py-2 rounded' style = {{background: "#F8F8F8"}}>
+                                                <p className = 'my-auto' style = {{color: "#4F4F4F"}}>
+                                                    {item.body}
+                                                </p>
+                                                <small className = 'text-secondary'>
+                                                    {getRandomDate().toLocaleTimeString()}
+                                                </small>
+                                            </Stack>
+                                            <OverlayTrigger
+                                                trigger="click"
+                                                placement="bottom"
+                                                overlay={
+                                                    <Popover style={{ width: "8vw" }} className='pe-4 border-0 bg-white'>
+                                                        <Popover.Body className='p-0'>
+                                                            <Stack direction="vertical" gap={2} className='bg-white'>
+                                                                <Button variant="outline-danger" className='w-100' onClick = {() => handleDelete(item.id)}>Delete</Button>
+                                                            </Stack>
+                                                        </Popover.Body>
+                                                    </Popover>
+                                                }
+                                            >
+                                                <Button variant="transparent"> <BsThreeDots /> </Button>
+                                            </OverlayTrigger>
                                         </Stack>
                                     </Col>
                                 </Stack>
