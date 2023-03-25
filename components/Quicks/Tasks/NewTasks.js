@@ -64,7 +64,7 @@ export default function NewTasks(){
                         </Col>
                         <Col lg={12} className='p-0'>
                             <Stack direction="horizontal" gap={4} className='align-items-center'>
-                                <BsBookmarks className='text-primary fs-2' />
+                                <BsBookmarks className='text-primary fs-5' />
                                 <Select
                                     isMulti
                                     name="options priority"
