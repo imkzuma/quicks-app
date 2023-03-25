@@ -1,5 +1,8 @@
 import { Accordion, Button, Col, Form, OverlayTrigger, Popover, Row, Stack } from "react-bootstrap";
-import { BsClock, BsPencil, BsThreeDots } from "react-icons/bs";
+import { BsBookmarks, BsClock, BsPencil, BsThreeDots } from "react-icons/bs";
+import Select from "react-select";
+
+import { customStyles, options } from "./TaskPriorityOptions";
 import { ToggleTasksView } from "./ToggleTasksView";
 
 export default function NewTasks(){
@@ -57,6 +60,19 @@ export default function NewTasks(){
                             <Stack direction="horizontal" gap={4} className='align-items-center'>
                                 <BsPencil className='text-secondary fs-4' />
                                 <Form.Control type="text" className='shadow-none p-1 px-3' placeholder="No Description" />
+                            </Stack>
+                        </Col>
+                        <Col lg={12} className='p-0'>
+                            <Stack direction="horizontal" gap={4} className='align-items-center'>
+                                <BsBookmarks className='text-primary fs-2' />
+                                <Select
+                                    isMulti
+                                    name="options priority"
+                                    options={options}
+                                    styles={customStyles}
+                                    className="basic-multi-select"
+                                    classNamePrefix="select"
+                                />
                             </Stack>
                         </Col>
                     </Stack>
