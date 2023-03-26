@@ -10,6 +10,8 @@ export default function ChatLists({ data }){
     const [chat, setChat] = useState(false);
     const [datas, setDatas] = useState([]);
     const [name , setName] = useState(null);
+    const [Reply, setReply] = useState(false);
+    const [replyMessage, setReplyMessage] = useState(null);
 
     const getChat = async(id) => {
         try{
@@ -31,10 +33,47 @@ export default function ChatLists({ data }){
         setDatas(datas.filter(item => item.id !== id));
     }
 
+    const handleReply = (message) => {
+        setReply(true);
+        setReplyMessage(message)
+
+    }
+
+    const handleCloseViewChat = () => {
+        setChat(false);
+        setReply(false);
+    }
+
     const handleClick = (item) => {
         getChat(item.id);
         setName(item.name);
         setChat(true);
+    }
+
+    const SelectReplyChat = () => {
+        return(
+            <AnimatePresence>
+                <motion.div
+                    initial = {{ opacity: 0, y: 50 }}
+                    animate = {{ opacity: 1, y: 0 }}
+                    exit = {{ opacity: 0, y: 50 }}
+                    transition = {{ type: "spring", stiffness: 100, damping: 20, duration: 0.5 }}
+                >
+
+                    <Alert variant = "secondary" className = 'p-0 px-3 pb-3' onClose={() => setReply(!Reply)}>
+                            <Stack direction = "horizontal" className="justify-content-between">
+                                <small className = 'fw-bold'>Replying to {name}</small>
+                                <Button variant="transparent" onClick={() => setReply(!Reply)}>
+                                    <BsX className="fs-5" />
+                                </Button>
+                            </Stack>  
+                            <small  className = 'my-auto text-dark text-start'>
+                                { replyMessage }
+                            </small>
+                    </Alert>
+                </motion.div>
+            </AnimatePresence>
+        )
     }
 
     const ViewChats = () => {
@@ -45,7 +84,7 @@ export default function ChatLists({ data }){
                             lg = {1} md = {1}
                             sm = {1} xs = {1}
                         >
-                            <Button variant = "transparent" className = 'px-0 py-0' onClick = {() => setChat(false)}>
+                            <Button variant = "transparent" className = 'px-0 py-0' onClick = {() => handleCloseViewChat()}>
                                 <BsArrowLeft className = 'text-dark fs-5' />
                             </Button>
                         </Col>
@@ -61,7 +100,7 @@ export default function ChatLists({ data }){
                             lg = {1} md = {2}
                             sm = {1} xs = {2}
                         >
-                            <Button variant = "transparent" className = 'px-0 py-0' onClick={() => setChat(false)}>
+                            <Button variant = "transparent" className = 'px-0 py-0' onClick={() => handleCloseViewChat()}>
                                 <BsX className = 'text-dark fs-3' />
                             </Button>
                         </Col>
@@ -100,8 +139,9 @@ export default function ChatLists({ data }){
                                                 overlay={
                                                     <Popover style={{ width: "8vw" }} className='pe-4 border-0 bg-white'>
                                                         <Popover.Body className='p-0'>
-                                                            <Stack direction="vertical" gap={2} className='bg-white'>
-                                                                <Button variant="outline-danger" className='w-100' onClick = {() => handleDelete(item.id)}>Delete</Button>
+                                                            <Stack direction="vertical" className='bg-white border rounded'>
+                                                                <Button variant = "transparent" className = 'text-primary text-start px-0 ps-3 border rounded-0'>Share</Button>
+                                                                <Button variant = "transparent" className = 'text-primary text-start px-0 ps-3 border rounded-0' onClick = {() => handleReply(item.body)}>Reply</Button>
                                                             </Stack>
                                                         </Popover.Body>
                                                     </Popover>
@@ -176,12 +216,13 @@ export default function ChatLists({ data }){
                             )
                         })
                     }
+                    { Reply&& <SelectReplyChat /> }
                     <Row>
                         <Col lg = {10} xs = {8} md = {10} sm ={9}>
                             <Form.Control type = "text" className = 'shadow-none' placeholder = "Type a new message" />
                         </Col>
                         <Col lg = {2} xs = {4} md = {2} sm = {3}>
-                            <Button className = 'w-100'>
+                            <Button className = 'w-100' >
                                 Send
                             </Button>
                         </Col>
