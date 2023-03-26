@@ -1,4 +1,5 @@
 import axios from "axios";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { InputGroup, Stack, Form, Container, Row, Button, Col, Alert, Spinner, OverlayTrigger, Popover } from "react-bootstrap";
 import { BsArrowLeft, BsSearch, BsThreeDots, BsX } from "react-icons/bs";
@@ -38,27 +39,32 @@ export default function ChatLists({ data }){
 
     const ViewChats = () => {
         return(
-            <Container fluid className="p-0">
+            <div className="p-0">
                 <Row className="sticky-top justify-content-between align-items-center py-2 pb-4 border-bottom bg-white">
-                    <Col lg = {7}>
-                        <Row className = "gap-3 align-items-center">
-                            <Col lg = {1}>
-                                <Button variant = "transparent" className = 'px-0 py-0' onClick = {() => setChat(false)}>
-                                    <BsArrowLeft className = 'text-dark fs-5' />
-                                </Button>
-                            </Col>
-                            <Col lg = {10}>
-                                <h5 className = 'fw-bold text-primary my-auto'> 
-                                    { name }
-                                </h5>
-                            </Col>
-                        </Row>
-                    </Col>
-                    <Col lg = {1}>
-                        <Button variant = "transparent" className = 'px-0 py-0' onClick={() => setChat(false)}>
-                            <BsX className = 'text-dark fs-3' />
-                        </Button>
-                    </Col>
+                        <Col 
+                            lg = {1} md = {1}
+                            sm = {1} xs = {1}
+                        >
+                            <Button variant = "transparent" className = 'px-0 py-0' onClick = {() => setChat(false)}>
+                                <BsArrowLeft className = 'text-dark fs-5' />
+                            </Button>
+                        </Col>
+                        <Col 
+                            lg = {10} md = {9}
+                            sm = {10} xs = {8}
+                        >
+                            <h5 className = 'ps-2 fw-bold text-primary my-auto'> 
+                                { name }
+                            </h5>
+                        </Col>
+                        <Col 
+                            lg = {1} md = {2}
+                            sm = {1} xs = {2}
+                        >
+                            <Button variant = "transparent" className = 'px-0 py-0' onClick={() => setChat(false)}>
+                                <BsX className = 'text-dark fs-3' />
+                            </Button>
+                        </Col>
                 </Row>
 
                 <Container fluid className = 'py-2 pb-5'>
@@ -161,10 +167,10 @@ export default function ChatLists({ data }){
                                 item.postId % 2 === 0 && index < 1 &&
                                 <Alert key = {index} variant = "primary" className = 'text-center p-2' >
                                     <Stack direction = "horizontal" gap = {3}>
-                                        <Spinner animation="border" variant="primary" />
-                                        <p className = 'my-auto text-dark fw-bold'>
+                                        <Spinner animation="border" variant="primary" size = "sm" />
+                                        <small className = 'my-auto text-dark fw-bold text-start'>
                                             Please wait while we connect you with one of our team...
-                                        </p>
+                                        </small>
                                     </Stack>
                                 </Alert>
                             )
@@ -181,54 +187,83 @@ export default function ChatLists({ data }){
                         </Col>
                     </Row>
                 </Form>
-            </Container>
+            </div>
         )
     }
 
     return(
         <>
             {
-                chat? <ViewChats /> :
-                <>
-                    <InputGroup className = 'pb-4'>
-                        <Form.Control 
-                            type="text" 
-                            placeholder="Search" 
-                            className = 'px-5' style = {{ borderRight: "none", boxShadow: "none" }} 
-                        />
-                        <InputGroup.Text 
-                            className = 'px-5' 
-                            style = {{ backgroundColor: "transparent" }}
-                        > 
-                            <BsSearch className="texr-secondary" /> 
-                        </InputGroup.Text>
-                    </InputGroup>
+                chat? 
+                <AnimatePresence>
+                    <motion.div
+                        initial = {{ x: 200 }}
+                        animate = {{ x: 0 }}
+                        exit = {{ opacity: 0 }}
+                        transition = {{ type: "ease" }}
+                    >
+                        <ViewChats /> 
+                    </motion.div>
+                </AnimatePresence>
+                :
+                <motion.div 
+                    initial = {{ x: -200 }} 
+                    animate = {{ x:0 }}
+                    transition = {{ type: "ease" }}
+                >
+                        <InputGroup className = 'pb-4'>
+                            <Form.Control 
+                                type="text" 
+                                placeholder="Search" 
+                                className = 'px-5' style = {{ borderRight: "none", boxShadow: "none" }} 
+                            />
+                            <InputGroup.Text 
+                                className = 'px-5' 
+                                style = {{ backgroundColor: "transparent" }}
+                            > 
+                                <BsSearch className="texr-secondary" /> 
+                            </InputGroup.Text>
+                        </InputGroup>
 
-                    <Stack direction="vertical" gap = {4} type = "button">
-                        {
-                            data.map((item, index) => {
-                                return(
-                                    <Stack key = {index} direction = "horizontal" gap = {3} className = {`${data.length - 1 !== index&& "border-bottom" } pb-4`} onClick = {() => handleClick(item)}>
-                                        <DefaultImageChat image = {item.name} />
-                                        <div>
-                                            <Stack direction = "horizontal" gap = {4}>
-                                                <h5 className = 'fw-bold text-primary' style = {{marginBottom: "-2px"}}> {item.name} </h5>
-                                                <small className = 'text-secondary'> {getRandomDate().toLocaleString()} </small>
-                                            </Stack>
+                        <Stack direction="vertical" gap = {4} type = "button">
+                            {
+                                data.map((item, index) => {
+                                    return(
+                                        <Row key = {index} className = {`${data.length - 1 !== index&& "border-bottom" } pb-4`} onClick = {() => handleClick(item)}>
+                                            <Col 
+                                                lg = {1} md = {1}
+                                                sm = {1} xs = {1}
+                                                className = 'pt-xl-1'
+                                            >
+                                                <DefaultImageChat image = {item.name} />
+                                            </Col>
+                                            <Col 
+                                                lg = {11} md = {10}
+                                                sm = {10} xs = {10}
+                                                className = 'ps-3 ps-sm-4'
+                                            >
+                                                <Stack direction = "horizontal" gap = {4}>
+                                                    <h5 
+                                                        className = 'fw-bold text-primary' 
+                                                        style = {{marginBottom: "-2px"}}
+                                                    > 
+                                                        {item.name} 
+                                                    </h5>
+                                                    <small className = 'text-secondary'> {getRandomDate().toLocaleString()} </small>
+                                                </Stack>
 
-                                            <p className = 'fw-bold text-secondary' style = {{marginBottom: "-2px"}}> {item.username} : </p>
-                                            <small className = 'text-secondary'>
-                                                {item.company.catchPhrase.slice(0, 30)}...
-                                            </small>
-                                        </div>
-                                    </Stack>
-                                )
-                            })
-                        }
-                    </Stack>
-                </>
+                                                <p className = 'fw-bold text-secondary' style = {{marginBottom: "-2px"}}> {item.username} : </p>
+                                                <small className = 'text-secondary'>
+                                                    {item.company.catchPhrase.slice(0, 30)}...
+                                                </small>
+                                            </Col>
+                                        </Row>
+                                    )
+                                })
+                            }
+                        </Stack>
+                </motion.div>
             }
-            
         </>
     )
 }
