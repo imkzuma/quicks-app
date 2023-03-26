@@ -12,8 +12,8 @@ export default function NewTasks(){
                 className = 'border-bottom'
                 defaultActiveKey = "newTasks"
             >
-                <Row className='align-items-center justify-content-between pt-2 px-3'>
-                    <Col lg = {7}>
+                <Row className='align-items-center justify-content-between py-2 px-lg-3'>
+                    <Col xl = {10} lg = {5} md = {9}>
                         <Form.Check
                             type="checkbox"
                             className = 'align-items-center d-flex gap-3'
@@ -23,7 +23,7 @@ export default function NewTasks(){
                         />
                     </Col>
 
-                    <Col lg = {5} className='p-0 m-auto text-end'>
+                    <Col xl = {2} lg = {4} md = {3} className='p-0 m-auto text-end'>
                         <div>
                             <ToggleTasksView eventKey={"newTasks"} />
                             <OverlayTrigger
@@ -46,23 +46,23 @@ export default function NewTasks(){
 
                 </Row>
                 <Accordion.Collapse
-                    className='ps-4'
+                    className='ps-sm-4'
                     eventKey = "newTasks"
                 >
-                    <Stack direction="vertical" gap={3} className='py-2 ps-3'>
-                        <Col lg={6} className='p-0'>
+                    <Stack direction="vertical" gap={3} className='py-2 ps-xl-3'>
+                        <Col xl={6} lg ={10} className='p-0'>
                             <Stack direction="horizontal" gap={4} className='align-items-center'>
                                 <BsClock className='text-secondary fs-4' />
                                 <Form.Control type="date" placeholder = "Set Date" />
                             </Stack>
                         </Col>
-                        <Col lg={6} className='p-0'>
+                        <Col xl = {8} lg={10} className='p-0'>
                             <Stack direction="horizontal" gap={4} className='align-items-center'>
                                 <BsPencil className='text-secondary fs-4' />
                                 <Form.Control type="text" className='shadow-none p-1 px-3' placeholder="No Description" />
                             </Stack>
                         </Col>
-                        <Col lg={12} className='p-0'>
+                        <Col xl = {12} lg={12} className='p-0'>
                             <Stack direction="horizontal" gap={4} className='align-items-center'>
                                 <BsBookmarks className='text-primary fs-5' />
                                 <Select
