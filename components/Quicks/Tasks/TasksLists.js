@@ -88,12 +88,14 @@ export default function TasksLists() {
                                 key={index}
                                 className={`${data.length - 1 !== index && "border-bottom"} py-1`}
                             >
-                                <Row className='align-items-center px-3'>
-                                    <Col lg={6}>
+                                <Row className='align-items-center px-xl-3'>
+                                    <Col 
+                                        xl={6} lg = {5}
+                                    >
                                         <Form.Check
                                             type="checkbox"
                                             label={
-                                                <h6 className='ps-3 fw-bold text-dark'>
+                                                <h6 className='ps-xl-3 ps-2 fw-bold text-dark'>
                                                     {
                                                         item.tags.map((tag, id) => {
                                                             return (
@@ -114,33 +116,60 @@ export default function TasksLists() {
                                         />
                                     </Col>
     
-                                    <Col lg={5} className='m-auto'>
-                                        <Row className = 'align-items-center'>
-                                            <Col lg={5} className = 'p-0'>
+                                    <Col 
+                                        xl={5} lg = {5}
+                                        className='m-auto'
+                                    >
+                                        <Row className = 'justify-content-center justify-content-xl-start align-items-center'>
+                                            <Col 
+                                                lg={5} md = {3}
+                                                sm = {3} xs = {4}
+                                                className = 'p-0'
+                                            >
                                                 <small className='text-danger text-start'>
                                                     {!check[item.id] && selisihDate(item.publishDate)}
                                                 </small>
                                             </Col>
     
-                                            <Col lg={3}>
+                                            <Col 
+                                                lg={3} md ={4}
+                                                sm = {3} xs = {4}
+                                            >
                                                 <small className={`${check[item.id] && "text-secondary"}`}>
                                                     {printDate(item.publishDate)}
                                                 </small>
                                             </Col>
                                             
-                                            <Col lg={1} className='m-auto'>
+                                            <Col 
+                                                lg={1} md = {2}
+                                                sm = {2} xs = {2}  
+                                                className='m-xl-auto'
+                                            >
                                                 <ToggleTasksView eventKey={index} />
                                             </Col>
                                             
-                                            <Col lg = {1} className='m-auto'>
+                                            <Col 
+                                                lg = {1} md = {2}
+                                                sm = {2} xs = {2}
+                                                className='m-auxl-to'
+                                            >
                                                 <OverlayTrigger
                                                     trigger="click"
-                                                    placement="bottom"
+                                                    placement = "bottom"
                                                     overlay={
-                                                        <Popover style={{ width: "8vw" }} className='pe-4 border-0 bg-transparent'>
+                                                        <Popover 
+                                                            style={{ minWidth: "8vw", maxWidth: "20vw" }} 
+                                                            className='pe-4 border-0 bg-transparent'
+                                                        >
                                                             <Popover.Body className='p-0'>
                                                                 <Stack direction="vertical" gap={2} className='bg-white'>
-                                                                    <Button variant="outline-danger" className='w-100' onClick = {() => handleDelete(item.id)}>Delete</Button>
+                                                                    <Button 
+                                                                        variant="outline-danger" 
+                                                                        className='w-100' 
+                                                                        onClick = {() => handleDelete(item.id)}
+                                                                    >
+                                                                        Delete
+                                                                    </Button>
                                                                 </Stack>
                                                             </Popover.Body>
                                                         </Popover>
@@ -155,22 +184,22 @@ export default function TasksLists() {
                                 </Row>
                                 <Accordion.Collapse
                                     eventKey={index}
-                                    className='ps-4'
+                                    className='ps-sm-4'
                                 >
-                                    <Stack direction="vertical" gap={3} className='py-2 ps-3'>
-                                        <Col lg={6} className='p-0'>
+                                    <Stack direction="vertical" gap={3} className='py-2 ps-xl-3'>
+                                        <Col xl = {6} lg={10} className='p-0'>
                                             <Stack direction="horizontal" gap={4} className='align-items-center'>
                                                 <BsClock className='text-primary fs-4' />
-                                                <Form.Control type="date" value={defDateFormatted(item.publishDate)} onChange={() => console.log("CHANGE")} />
+                                                <Form.Control type="date" defaultValue={defDateFormatted(item.publishDate)} onChange={() => console.log("CHANGE")} />
                                             </Stack>
                                         </Col>
-                                        <Col lg={6} className='p-0'>
+                                        <Col xl = {8} lg={10} className='p-0'>
                                             <Stack direction="horizontal" gap={4} className='align-items-center'>
-                                                <BsPencil className='text-primary fs-2' />
-                                                <h6> {item.text} </h6>
+                                                <BsPencil className='text-primary fs-4' />
+                                                <textarea defaultValue = {item.text} className = 'w-100 textarea' />
                                             </Stack>
                                         </Col>
-                                        <Col lg={12} className='p-0'>
+                                        <Col xl = {12} lg={12} className='p-0'>
                                             <Stack direction="horizontal" gap={4} className='align-items-center'>
                                                 <BsBookmarks className='text-primary fs-5' />
                                                 <Select
