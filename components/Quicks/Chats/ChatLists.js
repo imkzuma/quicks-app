@@ -217,12 +217,14 @@ export default function ChatLists({ data }){
                                 placeholder="Search" 
                                 className = 'px-5' style = {{ borderRight: "none", boxShadow: "none" }} 
                             />
+
                             <InputGroup.Text 
                                 className = 'px-5' 
                                 style = {{ backgroundColor: "transparent" }}
                             > 
-                                <BsSearch className="texr-secondary" /> 
+                                <BsSearch className="text-secondary" /> 
                             </InputGroup.Text>
+
                         </InputGroup>
 
                         <Stack direction="vertical" gap = {4} type = "button">
