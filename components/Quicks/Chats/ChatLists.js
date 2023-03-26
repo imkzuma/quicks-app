@@ -36,7 +36,6 @@ export default function ChatLists({ data }){
     const handleReply = (message) => {
         setReply(true);
         setReplyMessage(message)
-
     }
 
     const handleCloseViewChat = () => {
@@ -219,7 +218,11 @@ export default function ChatLists({ data }){
                     { Reply&& <SelectReplyChat /> }
                     <Row>
                         <Col lg = {10} xs = {8} md = {10} sm ={9}>
-                            <Form.Control type = "text" className = 'shadow-none' placeholder = "Type a new message" />
+                            <Form.Control 
+                                type = "text" 
+                                className = 'shadow-none' 
+                                placeholder = "Type a new message" 
+                            />
                         </Col>
                         <Col lg = {2} xs = {4} md = {2} sm = {3}>
                             <Button className = 'w-100' >
