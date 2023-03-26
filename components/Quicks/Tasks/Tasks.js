@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, DropdownButton, Dropdown, Stack, Button } from "react-bootstrap";
+import { Container, DropdownButton, Dropdown, Stack, Button, Row, Col } from "react-bootstrap";
 import { AnimatePresence, motion } from "framer-motion";
 import { BsDash, BsPlus } from "react-icons/bs";
 
@@ -13,29 +13,41 @@ export default function Tasks(){
     return(
         <QuicksOpenCard>
             <Container fluid className = 'px-4 py-3'>
-                <Stack
-                    direction = "horizontal"
-                    className = 'ps-0 ps-lg-5 pb-3 align-items-center justify-content-between'
+                <Row
+                    className = 'ps-0 ps-xl-5 pb-3 align-items-center justify-content-between'
                 >
-                    <DropdownButton 
-                        variant = "outline-dark" 
-                        title = "My Tasks"
+                    <Col 
+                        lg = {4} md = {4}
+                        sm = {6} xs = {6}
+                        className = 'p-0 bg-warning'
                     >
-                        <Dropdown.Item>Personal Errands</Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Dropdown.Item>Urgent To Do</Dropdown.Item>
-                    </DropdownButton>
+                        <DropdownButton 
+                            variant = "outline-dark" 
+                            className = 'w-100 bg-white'
+                            title = "My Tasks"
+                        >
+                            <Dropdown.Item>Personal Errands</Dropdown.Item>
+                            <Dropdown.Divider />
+                            <Dropdown.Item>Urgent To Do</Dropdown.Item>
+                        </DropdownButton>
+                    </Col>
 
-                    <Button 
-                        className = 'd-flex justify-content-center gap-2 align-items-center'
-                        onClick = { () => setShowNewTask(!showNewTask) }
+                    <Col 
+                        lg = {6} md = {5}
+                        sm = {6} xs = {6}
+                        className = 'p-0 d-flex justify-content-end'
                     >
-                        {
-                            showNewTask? <BsDash className = 'fs-5' /> : <BsPlus className = 'fs-5' /> 
-                        }
-                        New Task
-                    </Button>
-                </Stack>
+                        <Button 
+                            className = 'd-flex justify-content-center gap-2 align-items-center'
+                            onClick = { () => setShowNewTask(!showNewTask) }
+                        >
+                            {
+                                showNewTask? <BsDash className = 'fs-5' /> : <BsPlus className = 'fs-5' /> 
+                            }
+                            New Task
+                        </Button>
+                    </Col>
+                </Row>
                 
                 <Stack direction = "vertical">
                     {
