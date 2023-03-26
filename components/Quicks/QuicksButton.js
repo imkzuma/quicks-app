@@ -30,7 +30,7 @@ export default function QuicksButton(){
                 }
                 <Button 
                     onClick = { handleTodoClick } 
-                    className = 'rounded-circle p-3'
+                    className = {`rounded-circle p-3 ${showTodo&& "btn-active"}`} 
                     style = {{
                         background: showTodo? "#F8B76B" : "#F2F2F2", 
                         border: `1px solid ${showTodo? "#F8B76B" : "#f2f2f2"}`
@@ -56,7 +56,7 @@ export default function QuicksButton(){
                 }
                 <Button 
                     onClick = { handleChatClick } 
-                    className = 'rounded-circle p-3 quicks-btn-chat' 
+                    className = {`rounded-circle p-3 ${showChat&& "btn-active"}`} 
                     style = {{
                         background: showChat ? "#8785FF" : "#F2F2F2", 
                         border: `1px solid ${showChat? "#8785FF" : "#f2f2f2"}`
