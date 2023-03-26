@@ -67,7 +67,7 @@ export default function ChatLists({ data }){
                         </Col>
                 </Row>
 
-                <Container fluid className = 'py-2 pb-5'>
+                <Container fluid className = 'py-2 pb-5' style = {{minHeight: "54vh"}}>
                     {
                         datas.map((item, index) => {
                             return(
